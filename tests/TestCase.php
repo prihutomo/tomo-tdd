@@ -9,5 +9,5 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public $baseUrl = 'http://tomo-tdd.test';
+    public $baseUrl = 'http://localhost';
 }

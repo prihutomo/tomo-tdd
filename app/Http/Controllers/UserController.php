@@ -57,6 +57,7 @@ class UserController extends Controller
 
         $user->save();
 
+        return redirect()->route('user.index');
     }
 
     public function store()
@@ -75,7 +76,7 @@ class UserController extends Controller
 
         if($user){
             $user->delete();
-            return back();
+            return redirect()->route('user.index');;
         }
     }
 }

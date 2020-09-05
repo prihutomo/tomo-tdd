@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     User Index
+                    <a href="{{ route('user.create') }}">Create User</a>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -23,8 +24,8 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>
-                                        <a href="{{ route('user.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                        <a href="{{ route('user.destroy', $item->id )}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{ route('user.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit User</a>
+                                        <a href="{{ route('user.destroy', $item->id )}}" class="btn btn-sm btn-danger">Delete User</a>
                                     </td>
                                 </tr>
                             @endforeach

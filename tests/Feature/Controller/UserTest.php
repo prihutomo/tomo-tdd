@@ -47,7 +47,11 @@ class UserTest extends TestCase
     {
         $this->actingAs($this->user_login());
 
-        $this->visit('/user/create');
+        $this->visit('/user');
+
+        $this->seePageIs('/user');
+
+        $this->click('Create User');
 
         $this->seePageIs('/user/create');
 
@@ -61,7 +65,11 @@ class UserTest extends TestCase
 
         $this->actingAs($this->user_login());
 
-        $this->visit('/user/2/edit');
+        $this->visit('/user');
+
+        $this->seePageIs('/user');
+
+        $this->click('Edit User', ['id' => 2]);
 
         $this->seePageIs('/user/2/edit');
 
@@ -85,6 +93,8 @@ class UserTest extends TestCase
             'name'      => 'Tomo',
             'email'     => 'hanung@prihutomo.web.id',
         ]);
+
+        $this->seePageIs('/user');
     }
 
     /** @test */
@@ -106,5 +116,26 @@ class UserTest extends TestCase
             'name'      => 'Tomo',
             'email'     => 'hanung@prihutomo.web.id',
         ]);
+
+        $this->seePageIs('/user');
+    }
+
+    /** @test */
+    public function user_action_delete_user()
+    {
+        $this->user_sample();
+
+        $this->actingAs($this->user_login());
+
+        $this->visit('/user');
+
+        $this->click('Delete User');
+        // $this->delete('user/2');
+
+        $this->notSeeInDatabase('users', [
+            'id' =>  2,
+        ]);
+
+        $this->seePageIs('/user');
     }
 }

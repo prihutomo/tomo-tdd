@@ -69,9 +69,9 @@ class UserTest extends TestCase
 
         $this->seePageIs('/user');
 
-        $this->click('Edit User', ['id' => 2]);
+        $this->visit('/user/2/edit');
 
-        $this->seePageIs('/user/2/edit');
+        $this->seeRouteIs('user.edit', ['id' => 2]);
 
         $this->seeText('User Edit');
     }
@@ -129,13 +129,10 @@ class UserTest extends TestCase
 
         $this->visit('/user');
 
-        $this->click('Delete User');
-        // $this->delete('user/2');
+        $this->delete('user/2');
 
         $this->notSeeInDatabase('users', [
             'id' =>  2,
         ]);
-
-        $this->seePageIs('/user');
     }
 }
